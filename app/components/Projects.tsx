@@ -27,7 +27,7 @@ const projects: Project[] = [
     liveUrl: "#",
   },
   {
-    title: "Project Title Two",
+    title: "The Last Line",
     description:
       "For our ongoing BSIT Capstone project, my team and I are developing an immersive horror game inside Roblox. The gameplay revolves around psychological tension and critical thinking, forcing players to solve complex puzzles and decode cryptic systems to progress and survive the game. I am currently handling the logic, scripting, and layout mechanics to ensure a smooth and terrifying user experience.",
     tags: ["Python", "Graphics Design", "Social Media"],
@@ -246,11 +246,15 @@ export default function Projects() {
         </div>
 
         {/* Project grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto [&>article]:shadow-[0_0_60px_12px_rgba(255,255,255,0.18)] [&>article]:hover:shadow-[0_0_80px_20px_rgba(255,255,255,0.30)] [&>article]:transition-shadow [&>article]:duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {projects.map((project) => (
             <article
               key={project.title}
-              className="gradient-border flex flex-col overflow-hidden group hover:scale-[1.02] transition-transform duration-300"
+              className={`gradient-border flex flex-col overflow-hidden group hover:scale-[1.02] transition-all duration-300 ${
+                project.title === "The Last Line"
+                  ? "shadow-[0_0_60px_12px_rgba(255,255,255,0.18)] hover:shadow-[0_0_80px_24px_rgba(220,38,38,0.6)]"
+                  : "shadow-[0_0_60px_12px_rgba(255,255,255,0.18)] hover:shadow-[0_0_80px_20px_rgba(255,255,255,0.30)]"
+              }`}
             >
               {/* Card top image */}
               <div

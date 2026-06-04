@@ -325,18 +325,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* View all CTA */}
-        <div className="text-center mt-12">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass text-sm text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-200"
-          >
-            <GithubIcon />
-            View all projects on GitHub
-          </a>
-        </div>
+
       </div>
 
       {/* Bat jumpscare */}

@@ -105,7 +105,8 @@ export default function Navbar() {
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-        } glass border-t border-white/5`}
+        } border-t border-white/10`}
+        style={{ background: "rgba(10, 10, 15, 0.95)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
       >
         <ul className="px-6 py-4 flex flex-col gap-1">
           {navLinks.map((link) => (

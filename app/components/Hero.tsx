@@ -80,7 +80,7 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
           {/* Left — Profile photo */}
-          <div className="fade-in-up flex-shrink-0">
+          <div className="fade-in-up flex-shrink-0 mt-8 md:mt-0">
             <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full ring-2 ring-white/20 overflow-hidden shadow-[0_0_40px_8px_rgba(255,255,255,0.08)]">
               <Image
                 src="/iman.jpg"

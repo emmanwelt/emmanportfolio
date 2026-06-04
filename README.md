@@ -19,8 +19,8 @@ This is a responsive developer portfolio built to highlight my work and experien
 ![Profile](./public/profile.png)
 ![Skills](./public/skills.png)
 ![Projects](./public/project.png)
-![Education](./public/education.png)
-![Contact](./public/contact.png)
+![Education](./public/Education.png)
+![Contact](./public/Contact.png)
 
 ## Live Website
 

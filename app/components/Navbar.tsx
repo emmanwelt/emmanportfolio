@@ -57,17 +57,8 @@ export default function Navbar() {
         <a
           href="#hero"
           onClick={(e) => { e.preventDefault(); handleNavClick("#hero"); }}
-          className="flex items-center gap-3 group"
           aria-label="Emmanuel Welt Magpantay - Home"
-        >
-          {/* Monogram */}
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center font-bold text-sm text-white shadow-md group-hover:scale-105 transition-transform duration-200">
-            EW
-          </div>
-          <span className="font-semibold text-sm tracking-wide text-white/90 hidden sm:block">
-            Emmanuel Welt Magpantay
-          </span>
-        </a>
+        />
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-1">

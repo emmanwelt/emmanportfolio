@@ -1,5 +1,33 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
+function TypingEffect({ text }: { text: string }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 100); // Adjust speed here (lower = faster)
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text]);
+
+  return (
+    <>
+      {displayedText}
+      {currentIndex < text.length && (
+        <span className="animate-pulse">|</span>
+      )}
+    </>
+  );
+}
+
 export default function Hero() {
   const handleScroll = (href: string) => {
     const el = document.querySelector(href);
@@ -47,51 +75,62 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Status badge */}
-        <div className="fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-white/70 mb-8">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Available for opportunities
-        </div>
+      <div className="relative z-10 max-w-5xl mx-auto w-full">
+        {/* Two-column layout: photo left, text right */}
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
-        {/* Main heading */}
-        <h1 className="fade-in-up-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Hi, I&apos;m{" "}
-          <span className="bg-gradient-to-r from-white via-gray-400 to-gray-700 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">
-            Emmanuel Welt
-          </span>
-          <br />
-          <span className="bg-gradient-to-r from-gray-700 via-gray-400 to-white bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">Magpantay</span>
-        </h1>
+          {/* Left — Profile photo */}
+          <div className="fade-in-up flex-shrink-0">
+            <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full ring-2 ring-white/20 overflow-hidden shadow-[0_0_40px_8px_rgba(255,255,255,0.08)]">
+              <Image
+                src="/iman.jpg"
+                alt="Emmanuel Welt Magpantay"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+          </div>
 
-        {/* Tagline */}
-        <p className="fade-in-up-delay-2 text-lg sm:text-xl md:text-2xl text-white/60 max-w-2xl mx-auto mb-4 leading-relaxed">
-          A passionate{" "}
-          <span className="text-white font-medium">Full-Stack Developer</span>{" "}
-          crafting modern, performant web experiences that users love.
-        </p>
-        <p className="fade-in-up-delay-3 text-base text-white/40 max-w-xl mx-auto mb-12">
-          I build clean, scalable applications — from pixel-perfect UIs to robust backend systems.
-        </p>
+          {/* Right — Text content */}
+          <div className="flex-1 text-center md:text-left">
+            {/* Main heading */}
+            <h1 className="fade-in-up-delay-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
+              <span className="bg-gradient-to-r from-white via-gray-400 to-gray-700 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">
+                <TypingEffect text="Hi, I'm Emmanuel Welt Magpantay" />
+              </span>
+            </h1>
 
-        {/* CTA Buttons */}
-        <div className="fade-in-up-delay-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={() => handleScroll("#projects")}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-base bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-white border border-white/20 hover:border-white/50 hover:shadow-[0_0_20px_4px_rgba(255,255,255,0.15)] hover:scale-105 transition-all duration-200 cursor-pointer"
-          >
-            View My Work
-          </button>
-          <button
-            onClick={() => handleScroll("#contact")}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-base glass text-white/80 hover:text-white hover:scale-105 transition-all duration-200 cursor-pointer border border-white/20 hover:border-white/50 hover:shadow-[0_0_20px_4px_rgba(255,255,255,0.15)] hover:bg-white/5"
-          >
-            Contact Me
-          </button>
+            {/* Tagline */}
+            <p className="fade-in-up-delay-2 text-lg sm:text-xl md:text-2xl text-white/60 max-w-2xl mb-4 leading-relaxed">
+              A passionate{" "}
+              <span className="text-white font-medium">Full-Stack Developer</span>{" "}
+              crafting modern, performant web experiences that users love.
+            </p>
+            <p className="fade-in-up-delay-3 text-base text-white/40 max-w-xl mb-10">
+              I build clean, scalable applications — from pixel-perfect UIs to robust backend systems.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="fade-in-up-delay-4 flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4">
+              <button
+                onClick={() => handleScroll("#projects")}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-base bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-white border border-white/20 hover:border-white/50 hover:shadow-[0_0_20px_4px_rgba(255,255,255,0.15)] hover:scale-105 transition-all duration-200 cursor-pointer"
+              >
+                View My Work
+              </button>
+              <button
+                onClick={() => handleScroll("#contact")}
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-base glass text-white/80 hover:text-white hover:scale-105 transition-all duration-200 cursor-pointer border border-white/20 hover:border-white/50 hover:shadow-[0_0_20px_4px_rgba(255,255,255,0.15)] hover:bg-white/5"
+              >
+                Contact Me
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="mt-20 flex flex-col items-center gap-2 text-white/30 animate-bounce">
+        <div className="mt-16 flex flex-col items-center gap-2 text-white/30 animate-bounce">
           <span className="text-xs tracking-widest uppercase">Scroll</span>
           <svg
             className="w-4 h-4"

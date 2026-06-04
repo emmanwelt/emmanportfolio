@@ -1,6 +1,32 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
+
+function TypingEffect({ text }: { text: string }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 100); // Adjust speed here (lower = faster)
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text]);
+
+  return (
+    <>
+      {displayedText}
+      {currentIndex < text.length && (
+        <span className="animate-pulse">|</span>
+      )}
+    </>
+  );
+}
 
 export default function Hero() {
   const handleScroll = (href: string) => {
@@ -70,12 +96,9 @@ export default function Hero() {
           <div className="flex-1 text-center md:text-left">
             {/* Main heading */}
             <h1 className="fade-in-up-delay-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
-              Hi, I&apos;m{" "}
               <span className="bg-gradient-to-r from-white via-gray-400 to-gray-700 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">
-                Emmanuel Welt
+                <TypingEffect text="Hi, I'm Emmanuel Welt Magpantay" />
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-gray-700 via-gray-400 to-white bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]">Magpantay</span>
             </h1>
 
             {/* Tagline */}
